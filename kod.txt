@@ -1,0 +1,99 @@
+package interf;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class inter_face extends JFrame
+{
+
+    // main метод для приложения
+    public static void main(String[] args)
+    {
+        inter_face app =new inter_face(); //присвоение метода inter_face к переменной app
+        app.setVisible(true); // строка для включения приложения
+    }
+    //
+
+
+    private JButton button_spisok_tovarov = new JButton("Список товаров"); // кнопка просмотра товаров
+    private JButton button_inf_o_tovarax = new JButton("Информация о программе"); // кнопка о программе
+    private JButton button_see_tovar = new JButton("Вывести товар"); // кнопка проверить
+    private JTextField pole_dla_vvoda_text = new JTextField("", 10); // поле для ввода текста
+    private JLabel text_pered_polem = new JLabel("Введите товар который вы хотите просмотреть -\n"); // текстовая строка, с подписью
+
+    public inter_face ()
+    {
+        super ("Ведение заказов"); //Название приложения
+        this.setBounds( 100, 150, 1250, 150); // задание размеров главного окна
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //оформление окна приложения
+
+        Container container = this.getContentPane(); //создание контейнера
+        container.setLayout(new GridLayout(3,2,2,2));
+        container.add(text_pered_polem); // контерйнер с текстом внутри, используется для расположения
+        container.add(pole_dla_vvoda_text); // контейнер с полем для ввода текста
+
+
+        button_see_tovar.addActionListener(new see_zapros()); // проверка кнопки на нажатие
+        container.add(button_see_tovar);
+
+        button_inf_o_tovarax.addActionListener(new inf_o_programme()); // проверка кнопки на нажатие
+        container.add(button_inf_o_tovarax);
+
+        button_spisok_tovarov.addActionListener(new spisok_tovarov()); // проверка кнопки на нажатие
+        container.add(button_spisok_tovarov);
+    }
+
+
+    // класс с выводом окна с информацией после нажатия на кнопку
+
+    class inf_o_programme implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            String message = ""; // строка для информации
+            message += "Захаров Марк \n" + "Тема практики: \n" +"Ведение заказов"; // добавления информации в строку
+            JOptionPane.showMessageDialog(null, message, "Информация о программе", JOptionPane.PLAIN_MESSAGE); // демонтстрация окна с информацией
+        }
+    }
+    //
+
+
+    // класс с выводом окна с информацией после нажатия на кнопку
+    class spisok_tovarov implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            String message = ""; // строка для информации
+
+            message += "Материнская плата GIGABYTE Z590 VISION G - цена - 23 490 ₽ количество на складе - 5   \n" +
+                    "Материнская плата GIGABYTE Z590 GAMING X - цена - 17 490 ₽ количество на складе - 0 \n" +
+                    "Материнская плата GIGABYTE B450 AORUS Elite V2 - цена - 8 040 ₽ количество на складе - 4\n"+
+                    "Материнская плата ASRock B450M Pro4-F - цена - 5 890 ₽ количество на складе - 10 \n" ; // добавления информации в строку
+
+            JOptionPane.showMessageDialog(null, message, "Список товаров", JOptionPane.PLAIN_MESSAGE); // демонтстрация окна с информацией
+        }
+    }
+    //
+
+
+    // класс с выводом окна с информацией после нажатия на кнопку
+    class see_zapros implements ActionListener
+    {
+
+        public void actionPerformed (ActionEvent e)
+        {
+            String message = ""; // строка для информации
+            message += "Ниже будет выведен товар, который вы ищете \n" ; // добавления информации в строку
+            message += "Введённый товар - " + pole_dla_vvoda_text.getText()+ " \n Материнская плата ASRock B450M Pro4-F - цена - 5 890 ₽ количество на складе - 10 "  ; // добавления информации в строку
+            JOptionPane.showMessageDialog(null, message, "Поисковый запрос", JOptionPane.PLAIN_MESSAGE); // демонтстрация окна с информацией
+        }
+
+    }
+    //
+
+
+
+
+
+}
+
